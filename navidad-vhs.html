@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Navidad en VHS: Edición Retro 80’s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Monoton&family=Orbitron:wght@700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05061a;--ink:#e8f7ff;--mag:#ff2bd6;--cya:#18f0ff;--red:#e0143c;--grn:#0fb872;--gold:#ffd23f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#05061a radial-gradient(ellipse at 50% 0,#14124a 0,#05061a 60%) fixed;color:var(--ink);font-family:'VT323','Courier New',monospace;font-size:22px;overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#05061a;z-index:40}
+body.paused *{animation-play-state:paused!important}
+.px{font-family:'Press Start 2P','Courier New',monospace}
+.chroma{text-shadow:-2px 0 var(--cya),2px 0 var(--mag);animation:jit 2.4s steps(2) infinite}
+@keyframes jit{0%,100%{text-shadow:-2px 0 var(--cya),2px 0 var(--mag)}50%{text-shadow:-3px 1px var(--cya),3px -1px var(--mag)}92%{text-shadow:4px 0 var(--cya),-4px 0 var(--mag)}}
+#snow{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;z-index:1;pointer-events:none}
+#conf{position:fixed;inset:0;z-index:70;pointer-events:none}
+#stat{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;z-index:90;display:none;opacity:.9}
+#crt{position:fixed;inset:0;z-index:80;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.3) 0 1px,transparent 1px 3px);box-shadow:inset 0 0 130px rgba(0,0,0,.75)}
+#crt::after{content:"";position:absolute;left:0;right:0;height:22%;background:linear-gradient(transparent,rgba(255,255,255,.06),transparent);animation:roll 7s linear infinite}
+@keyframes roll{from{top:-25%}to{top:110%}}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* inicio */
+#start{position:relative;z-index:5;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px 16px;text-align:center}
+#start h2{margin:0;font-size:clamp(11px,3.4vw,15px);line-height:1.8;color:var(--gold)}
+.cass{width:min(84vw,360px);aspect-ratio:1.6;background:linear-gradient(#22223a,#0b0b18);border:3px solid #4a4a66;border-radius:12px;position:relative;transform:rotate(-3deg);box-shadow:0 0 0 3px #000,0 0 34px var(--mag),0 0 70px rgba(24,240,255,.25)}
+.lbl{position:absolute;left:7%;right:7%;top:8%;height:48%;background:#f6ecd0;border-radius:6px;border-top:12px solid var(--red);border-bottom:6px solid var(--grn);display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Permanent Marker',cursive;color:#1a2a6c;font-size:clamp(16px,5vw,24px);line-height:1.25;transform:rotate(-1deg)}
+.win{position:absolute;left:20%;right:20%;bottom:8%;height:28%;background:#05050d;border-radius:30px;border:2px solid #555;display:flex;justify-content:space-between;align-items:center;padding:0 7%}
+.reel{width:clamp(24px,9vw,38px);aspect-ratio:1;border-radius:50%;border:5px dotted #ddd;animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.arcade{font-family:'Press Start 2P','Courier New',monospace;border:0;border-radius:10px;padding:18px 20px;line-height:1.6;font-size:clamp(11px,3.4vw,15px);color:#fff;background:var(--red);box-shadow:0 7px 0 #7a0a22,0 0 28px rgba(255,43,214,.7);text-shadow:2px 2px 0 #7a0a22;transition:transform .08s}
+.arcade:active{transform:translateY(5px);box-shadow:0 2px 0 #7a0a22,0 0 28px rgba(255,43,214,.7)}
+#go{animation:pulse 1.3s steps(2) infinite}
+@keyframes pulse{50%{box-shadow:0 7px 0 #7a0a22,0 0 44px var(--gold)}}
+.hint{font-size:20px;opacity:.7}
+
+/* invitación */
+#inv{position:relative;z-index:5;max-width:780px;margin:0 auto;padding:84px 16px 120px;text-align:center}
+#inv.in{animation:turnon .7s steps(8) both}
+@keyframes turnon{0%{opacity:0;transform:scaleY(.02)}60%{opacity:1;transform:scaleY(1.04)}100%{transform:none}}
+body.trk #inv{animation:trk 1s steps(10)}
+@keyframes trk{0%,100%{transform:none;filter:none}15%{transform:translateX(-14px) skewX(8deg);filter:hue-rotate(60deg) blur(1px)}35%{transform:translateX(18px) skewX(-6deg)}55%{transform:translateY(-8px) skewX(10deg);filter:saturate(2.5)}75%{transform:translateX(-10px);filter:hue-rotate(-60deg)}}
+.hud{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:60;display:flex;justify-content:space-between;align-items:flex-start;padding:12px 14px;pointer-events:none;background:linear-gradient(rgba(5,6,26,.85),transparent)}
+.hud .px{font-size:clamp(10px,3vw,14px);color:#fff}
+#tag{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+body.paused #tag{animation:none}
+#tc,#dt{font-size:clamp(20px,5vw,28px);color:var(--cya);text-shadow:-1px 0 var(--mag),1px 0 #fff3}
+.lights{display:flex;justify-content:space-between;padding:0 4px;margin-bottom:22px}
+.lights i{width:11px;height:15px;border-radius:50% 50% 55% 55%;animation:glow 1.6s steps(2) infinite}
+@keyframes glow{50%{opacity:.25}}
+.stamp{display:inline-block;font-size:clamp(9px,2.8vw,13px);line-height:1.6;color:#fff;background:var(--red);padding:10px 14px;border:3px solid var(--gold);transform:rotate(-2deg);box-shadow:0 0 22px var(--red)}
+h1{margin:26px 0 8px;font-family:'Monoton','Orbitron',Impact,sans-serif;font-weight:400;font-size:clamp(40px,12.5vw,92px);line-height:1;color:var(--mag);letter-spacing:2px}
+h1 b{display:block;font-weight:400;color:var(--cya);font-size:.5em;margin-top:.25em}
+.ed{font-family:'Permanent Marker',cursive;font-size:clamp(28px,8vw,54px);color:var(--gold);text-shadow:0 0 14px #ff9d00,-2px 0 var(--red),2px 0 var(--grn);margin:8px 0 14px;transform:rotate(-2deg)}
+.sub{font-size:clamp(24px,5.5vw,32px);margin:0 auto 30px;max-width:520px;line-height:1.1}
+.info{display:grid;gap:14px;grid-template-columns:1fr;margin-bottom:38px}
+.box{background:rgba(5,6,26,.78);border:3px solid var(--c);border-radius:6px;padding:16px 12px;box-shadow:0 0 18px var(--c),inset 0 0 18px color-mix(in srgb,var(--c) 30%,transparent)}
+.box .e{font-size:34px}
+.box .k{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--c);margin:6px 0 4px;letter-spacing:2px}
+.box .v{font-size:clamp(28px,6vw,34px);line-height:1}
+h3{font-family:'Press Start 2P','Courier New',monospace;font-weight:400;font-size:clamp(12px,3.6vw,18px);line-height:1.6;color:var(--gold);margin:0 0 6px;text-shadow:-2px 0 var(--red),2px 0 var(--grn)}
+.hint2{margin:0 0 18px;font-size:20px;opacity:.75}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:44px}
+.card{background:rgba(5,6,26,.78);border:3px solid var(--c);border-radius:6px;padding:16px 10px;text-align:center;box-shadow:0 0 12px var(--c)}
+.card .e{display:block;font-size:40px}
+.card strong{display:block;font-weight:400;font-size:28px;line-height:1;margin-top:6px}
+.card span.d{display:block;font-size:20px;opacity:.8;margin-top:4px;line-height:1}
+.card.pop{animation:pop .4s steps(4)}
+@keyframes pop{40%{transform:scale(1.1) rotate(-3deg);background:var(--c)}}
+#rsvp{display:block;margin:0 auto;background:var(--grn);box-shadow:0 7px 0 #07603b,0 0 28px rgba(24,240,255,.7);text-shadow:2px 2px 0 #07603b;width:min(100%,430px)}
+#rsvp:active{box-shadow:0 2px 0 #07603b,0 0 28px rgba(24,240,255,.7)}
+#msg{margin:26px auto 0;max-width:460px;border:3px dashed var(--gold);padding:16px;color:var(--gold);font-size:28px;line-height:1.05;background:rgba(5,6,26,.85)}
+.end{margin-top:46px;font-size:22px;opacity:.65}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 10px calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,#05061a 40%)}
+.bar button{font-family:'Press Start 2P','Courier New',monospace;font-size:clamp(8px,2.4vw,11px);line-height:1.5;padding:12px 4px;background:#13133a;border:2px solid var(--cya);border-radius:6px;box-shadow:0 0 10px rgba(24,240,255,.5)}
+.bar button[aria-pressed="true"]{background:var(--mag);border-color:#fff}
+@media(min-width:640px){.info{grid-template-columns:repeat(3,1fr)}.bar{max-width:640px;margin:0 auto}}
+@media(prefers-reduced-motion:reduce){.chroma,#go,.reel,#crt::after,.lights i{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas><canvas id="conf"></canvas><canvas id="stat"></canvas><div id="crt"></div>
+
+<section id="start">
+  <h2 class="px chroma">Hay un video<br>esperándote…</h2>
+  <div class="cass" aria-label="Casete VHS navideño">
+    <div class="lbl">Navidad ’80s -<br>¡Dale Play!</div>
+    <div class="win"><div class="reel"></div><div class="reel"></div></div>
+  </div>
+  <button id="go" class="arcade">▶ INSERTAR CASETE<br>/ DAR PLAY</button>
+  <div class="hint">🔊 Sube el volumen para la experiencia completa</div>
+</section>
+
+<main id="inv" hidden>
+  <div class="hud px">
+    <div><div id="tag">PLAY ►</div><div id="tc">00:12:25:80</div></div>
+    <div id="dt">NOV 27 1985</div>
+  </div>
+  <div class="lights" id="lights" aria-hidden="true"></div>
+  <div class="stamp px">¡RECORDATORIO ESPECIAL!</div>
+  <h1 class="chroma">Navidad en VHS:<b>Edición</b></h1>
+  <div class="ed chroma">Retro 80’s</div>
+  <p class="sub">¡Prepárate para retroceder en el tiempo y celebrar!</p>
+
+  <div class="info">
+    <div class="box" style="--c:var(--cya)"><div class="e">📅</div><div class="k">DÍA</div><div class="v">27 de noviembre</div></div>
+    <div class="box" style="--c:var(--mag)"><div class="e">⏰</div><div class="k">HORA</div><div class="v">7:00 pm</div></div>
+    <div class="box" style="--c:var(--gold)"><div class="e">📍</div><div class="k">LUGAR</div><div class="v">Centro de Talleres y Gastronomía</div></div>
+  </div>
+
+  <h3>¿QUÉ TE ESPERA?</h3>
+  <p class="hint2">Toca cada tarjeta</p>
+  <div class="cards">
+    <button class="card" style="--c:var(--red)"><span class="e">🎲</span><strong>Divertidas dinámicas</strong></button>
+    <button class="card" style="--c:var(--mag)"><span class="e">🕺</span><strong>Pista de baile</strong><span class="d">¡Saca tus mejores pasos ochenteros!</span></button>
+    <button class="card" style="--c:var(--cya)"><span class="e">🎤</span><strong>Karaoke</strong><span class="d">¡Canta los clásicos!</span></button>
+    <button class="card" style="--c:var(--gold)"><span class="e">🍿</span><strong>Deliciosos snacks</strong></button>
+    <button class="card" style="--c:var(--grn)"><span class="e">🍽️</span><strong>Una deliciosa cena navideña</strong></button>
+  </div>
+
+  <button id="rsvp" class="arcade">CONFIRMAR ASISTENCIA</button>
+  <div id="msg" class="chroma" hidden>¡Excelente! Tu lugar está reservado en la cinta 📼</div>
+  <div class="end px" style="font-size:10px">◄◄ ¡Sé amable, rebobina! ►►</div>
+
+  <nav class="bar" aria-label="Controles de video">
+    <button id="pp" class="px">❚❚ PAUSE</button>
+    <button id="trk" class="px">⌁ TRACKING</button>
+    <button id="mus" class="px" aria-pressed="false">♪ MÚSICA OFF</button>
+  </nav>
+</main>
+
+<script>
+var $=function(s){return document.querySelector(s)};
+var playing=true,W,H,fl=[],t=74580,last=0;
+
+/* nieve pixelada */
+var sc=$('#snow'),sx=sc.getContext('2d'),cc=$('#conf'),cx=cc.getContext('2d');
+function mk(r){return{x:Math.random()*W,y:r?Math.random()*H:-2,s:Math.random()<.2?2:1,v:.12+Math.random()*.3,d:Math.random()*6.28,c:['#fff','#fff','#bff8ff','#ffc2f3'][Math.random()*4|0]}}
+function rs(){W=sc.width=Math.ceil(innerWidth/4);H=sc.height=Math.ceil(innerHeight/4);cc.width=innerWidth;cc.height=innerHeight;fl=[];for(var i=0;i<Math.min(150,W*H/90|0);i++)fl.push(mk(true))}
+addEventListener('resize',rs);rs();
+function pad(n,l){return String(n).padStart(l||2,'0')}
+function loop(ts){
+  var dt=ts-last;last=ts;
+  if(playing){
+    sx.clearRect(0,0,W,H);
+    fl.forEach(function(f){f.y+=f.v;f.d+=.02;f.x+=Math.sin(f.d)*.2;if(f.y>H)Object.assign(f,mk());sx.fillStyle=f.c;sx.fillRect(f.x|0,f.y|0,f.s,f.s)});
+    t+=dt/10;
+    var c=t|0;$('#tc').textContent=pad(c/360000|0)+':'+pad((c/6000|0)%60)+':'+pad((c/100|0)%60)+':'+pad(c%100);
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+/* luces navideñas */
+var cols=['#e0143c','#0fb872','#ffd23f','#18f0ff','#ff2bd6'],L=$('#lights');
+for(var i=0;i<16;i++){var b=document.createElement('i');b.style.background=cols[i%5];b.style.boxShadow='0 0 10px '+cols[i%5];b.style.animationDelay=(i%4)*.4+'s';L.appendChild(b)}
+
+/* estática / tracking */
+function burst(ms,bands,cb){
+  var c=$('#stat'),x=c.getContext('2d');c.width=160;c.height=90;c.style.display='block';
+  if(bands)document.body.classList.add('trk');
+  var end=performance.now()+ms;
+  (function f(){
+    if(performance.now()>end){c.style.display='none';document.body.classList.remove('trk');if(cb)cb();return}
+    var id=x.createImageData(160,90),d=id.data,b1=(performance.now()/8)%90,b2=Math.random()*90;
+    for(var y=0;y<90;y++){
+      var on=!bands||Math.abs(y-b1)<6||Math.abs(y-b2)<3;if(!on)continue;
+      for(var xx=0;xx<160;xx++){var v=Math.random()*255,k=(y*160+xx)*4;d[k]=v;d[k+1]=v;d[k+2]=v;d[k+3]=235}
+    }
+    x.clearRect(0,0,160,90);x.putImageData(id,0,0);setTimeout(f,50);
+  })();
+}
+
+/* audio sintetizado */
+var ac,master,musicOn=false,timer,nextT=0,idx=0;
+var F={C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,C5:523.25};
+var M='E4:1,E4:1,E4:2,E4:1,E4:1,E4:2,E4:1,G4:1,C4:1.5,D4:.5,E4:4,F4:1,F4:1,F4:1.5,F4:.5,F4:1,E4:1,E4:1,E4:.5,E4:.5,G4:1,G4:1,F4:1,D4:1,C4:4'.split(',').map(function(s){var p=s.split(':');return[F[p[0]],+p[1]]});
+function ensure(){
+  if(!ac){var A=window.AudioContext||window.webkitAudioContext;if(!A)return false;ac=new A();master=ac.createGain();master.gain.value=.16;master.connect(ac.destination)}
+  if(ac.state==='suspended')ac.resume();return true;
+}
+function tone(f,s,d,ty,v){
+  var o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=f;
+  g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.001,s+d);
+  o.connect(g);g.connect(master);o.start(s);o.stop(s+d+.03);
+}
+function sfx(a){
+  if(!ensure())return;var n=ac.currentTime;
+  a.forEach(function(f,i){tone(f,n+i*.07,.14,'square',.5)});
+}
+function sched(){
+  while(nextT<ac.currentTime+.6){
+    var n=M[idx],d=n[1]*.36;
+    tone(n[0],nextT,d*.9,'square',.45);
+    tone(n[0]*1.006,nextT,d*.9,'sawtooth',.22);
+    tone(n[0]/2,nextT,d*.9,'triangle',.6);
+    nextT+=d;idx=(idx+1)%M.length;
+  }
+}
+function music(on){
+  musicOn=on;var b=$('#mus');b.setAttribute('aria-pressed',on);b.textContent=on?'♪ MÚSICA ON':'♪ MÚSICA OFF';
+  clearInterval(timer);
+  if(on&&ensure()){nextT=ac.currentTime+.05;sched();timer=setInterval(sched,200)}
+}
+
+/* controles */
+$('#go').onclick=function(){
+  ensure();$('#go').disabled=true;
+  burst(1000,false,function(){$('#start').hidden=true;$('#start').style.display='none';var v=$('#inv');v.hidden=false;v.classList.add('in');scrollTo(0,0)});
+};
+$('#pp').onclick=function(){
+  playing=!playing;document.body.classList.toggle('paused',!playing);
+  $('#pp').textContent=playing?'❚❚ PAUSE':'▶ PLAY';
+  $('#tag').textContent=playing?'PLAY ►':'PAUSE ❚❚';
+  $('#tag').style.opacity=1;
+};
+$('#trk').onclick=function(){if(!$('#stat').style.display||$('#stat').style.display==='none')burst(1000,true)};
+$('#mus').onclick=function(){music(!musicOn)};
+document.querySelectorAll('.card').forEach(function(c){c.onclick=function(){c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');sfx([659,880])}});
+
+/* confeti pixelado */
+var ps=[],run=false,pc=['#ff2bd6','#18f0ff','#ffd23f','#e0143c','#0fb872','#fff'];
+function boom(){
+  for(var i=0;i<170;i++)ps.push({x:innerWidth/2+(Math.random()-.5)*160,y:innerHeight*.62,vx:(Math.random()-.5)*16,vy:-Math.random()*17-4,s:(Math.random()*3+2|0)*4,c:pc[Math.random()*6|0]});
+  if(!run){run=true;requestAnimationFrame(cf)}
+}
+function cf(){
+  cx.clearRect(0,0,cc.width,cc.height);
+  ps=ps.filter(function(p){p.vy+=.45;p.x+=p.vx;p.y+=p.vy;p.vx*=.99;return p.y<innerHeight+20});
+  ps.forEach(function(p){cx.fillStyle=p.c;cx.fillRect(Math.round(p.x/4)*4,Math.round(p.y/4)*4,p.s,p.s)});
+  if(ps.length)requestAnimationFrame(cf);else{run=false;cx.clearRect(0,0,cc.width,cc.height)}
+}
+$('#rsvp').onclick=function(){
+  boom();sfx([523,659,784,1047,1319]);
+  $('#msg').hidden=false;this.textContent='✔ ¡CONFIRMADO!';
+  $('#msg').scrollIntoView({behavior:'smooth',block:'center'});
+};
+</script>
+</body>
+</html>

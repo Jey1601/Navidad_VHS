@@ -179,12 +179,18 @@ function burst(ms,bands,cb){
 }
 
 /* audio sintetizado */
-var ac,master,musicOn=false,timer,nextT=0,idx=0;
+var ac,master,keep,musicOn=false,timer,nextT=0,idx=0;
+/* iPhone: un <audio> silencioso en bucle pasa la sesión a "reproducción" y el modo silencio no apaga el sonido */
+function silentWav(){var n=8000,b=new ArrayBuffer(44+n*2),v=new DataView(b);function s(o,t){for(var i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))}s(0,'RIFF');v.setUint32(4,36+n*2,true);s(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,16000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);s(36,'data');v.setUint32(40,n*2,true);return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&ac&&musicOn){ac.resume();if(keep)keep.play().catch(function(){})}});
 var F={C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,C5:523.25};
 var M='E4:1,E4:1,E4:2,E4:1,E4:1,E4:2,E4:1,G4:1,C4:1.5,D4:.5,E4:4,F4:1,F4:1,F4:1.5,F4:.5,F4:1,E4:1,E4:1,E4:.5,E4:.5,G4:1,G4:1,F4:1,D4:1,C4:4'.split(',').map(function(s){var p=s.split(':');return[F[p[0]],+p[1]]});
 function ensure(){
   if(!ac){var A=window.AudioContext||window.webkitAudioContext;if(!A)return false;ac=new A();master=ac.createGain();master.gain.value=.16;master.connect(ac.destination)}
-  if(ac.state==='suspended')ac.resume();return true;
+  if(ac.state!=='running')ac.resume();
+  try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+  if(!keep){keep=new Audio(silentWav());keep.loop=true;keep.setAttribute('playsinline','')}
+  keep.play().catch(function(){});return true;
 }
 function tone(f,s,d,ty,v){
   var o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=f;

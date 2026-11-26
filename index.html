@@ -212,7 +212,7 @@ function music(on){
 
 /* controles */
 $('#go').onclick=function(){
-  ensure();$('#go').disabled=true;
+  ensure();music(true);$('#go').disabled=true;
   burst(1000,false,function(){$('#start').hidden=true;$('#start').style.display='none';var v=$('#inv');v.hidden=false;v.classList.add('in');scrollTo(0,0)});
 };
 $('#pp').onclick=function(){
